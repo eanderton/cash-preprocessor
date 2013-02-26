@@ -1,0 +1,45 @@
+$define foobar ack
+
+$define VERSION ${ 1000*3 }
+
+$define baz(a,b,c):
+    $define x gorf
+    hello world
+    $(a)$b()$c
+    $x
+    $$
+$endef
+[$foobar]
+$foobar()
+$baz(1,2,3)
+$if defined("VERSION"):
+    VERSION is defined as $VERSION
+$elif True:
+    Never used
+$else:
+    VERSION is not defined
+$endif
+
+$if defined("VERSION") and int($VERSION) > 1000:
+<<sometest>>
+$endif
+
+Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum
+
+$PATH
+
+$define x:
+foo
+$endef
+
+$define fib(n):
+    $if int($n) == 1:
+        1
+    $else:
+        $define x ${ int($n)-1 }
+        $fib($x)
+    $endif
+        
+$endef
+
+$fib(3)
